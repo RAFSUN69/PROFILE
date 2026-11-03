@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAFSUN6T9 - Official</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{height:100vh;overflow:hidden;background:#000;color:#fff;display:flex;align-items:center;justify-content:center}
+#bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(0.6)}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(0,255,136,0.15), rgba(0,0,0,0.85));z-index:-1}
+.card{text-align:center;background:rgba(20,20,20,0.65);backdrop-filter:blur(20px);padding:45px 35px;border-radius:30px;border:1px solid rgba(255,255,255,0.15);width:90%;max-width:400px;box-shadow:0 0 40px rgba(0,255,136,0.2)}
+.avatar{width:120px;height:120px;border-radius:50%;border:3px solid transparent;background:linear-gradient(#000,#000) padding-box, linear-gradient(45deg,#00ff88,#00aaff) border-box;object-fit:cover;margin-bottom:15px;box-shadow:0 0 25px rgba(0,255,136,0.5)}
+h1{font-size:32px;letter-spacing:3px;margin-bottom:5px;background:linear-gradient(90deg,#00ff88,#00aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.tagline{opacity:0.7;margin-bottom:30px;letter-spacing:2px;font-size:12px;text-transform:uppercase}
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:16px;margin:14px 0;border-radius:15px;color:#fff;text-decoration:none;font-weight:700;letter-spacing:1px;transition:0.4s;border:none}
+.btn i{font-size:22px}
+.btn:hover{transform:translateY(-3px) scale(1.02)}
+.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E)}
+.discord{background:linear-gradient(135deg,#5865F2,#404EED)}
+.telegram{background:linear-gradient(135deg,#2AABEE,#229ED9)}
+#soundBtn{position:fixed;bottom:25px;right:25px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);padding:12px 22px;border-radius:50px;cursor:pointer;color:#fff;font-weight:bold;z-index:10}
+#soundBtn:hover{background:#00ff88;color:#000}
+</style>
+</head>
+<body>
+
+<!-- শুধু ভিডিও, এটারই সাউন্ড বাজবে -->
+<video loop playsinline id="bg-video" poster="avatar.png">
+  <source src="bg.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<div class="card">
+  <img src="avatar.png" class="avatar" alt="RAFSUN6T9">
+  <h1>RAFSUN6T9</h1>
+  <div class="tagline">Contact Me</div>
+
+  <a class="btn whatsapp" href="https://wa.me/8801317021116" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a class="btn discord" href="https://discord.gg/z8Xye89Z8s" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+  <a class="btn telegram" href="https://t.me/RAFSUN6T9" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+</div>
+
+<button id="soundBtn">🔇 Sound Off</button>
+
+<script>
+const video = document.getElementById('bg-video');
+const btn = document.getElementById('soundBtn');
+let isPlaying = false;
+
+// প্রথমে mute করে চালু হবে (ব্রাউজারের নিয়ম)
+video.muted = true;
+video.play();
+
+btn.onclick = async () => {
+  if(isPlaying){
+    video.muted = true;
+    btn.innerText = "🔇 Sound Off";
+    isPlaying = false;
+  } else {
+    video.muted = false;
+    video.currentTime = 0;
+    await video.play();
+    btn.innerText = "🔊 Sound On";
+    isPlaying = true;
+  }
+};
+</script>
+
+</body>
+</html>
